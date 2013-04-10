@@ -10,6 +10,11 @@ valid server types are html,rails,node,php
 
 this command initializes the project with an nginx.conf file based on the server type provided
 
+html template uses a simple doc root
+php using fast cgi
+rails using passenger
+node using a proxy
+
 #enable
 
 `vsc enable`
