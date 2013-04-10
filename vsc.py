@@ -9,16 +9,17 @@ def print_help():
 
 	print """
 
-echo "{command: 'init', type: 'rails'}" | vsrvctl
+vsrvctl <command> <subcommand>
 
-vsrvctl
+		COMMAND		SUBCOMMAND		
+
 		[status]
+
 		init
-				[html]
-				rails
-				php
-				node
-		
+						[html]
+						rails
+						php
+						node
 
 		enable
 		disable
