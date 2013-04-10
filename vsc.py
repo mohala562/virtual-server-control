@@ -39,7 +39,7 @@ class VirtualServer:
 			    server_name     {name}.*;
 			 
 			    index           index.html;
-			    root            {root_path}/public;
+			    root            {root_path};
 				}}
 		""",
 
