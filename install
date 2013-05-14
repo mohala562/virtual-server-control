@@ -1,6 +1,0 @@
-#!/bin/sh
-
-chmod 700 vsc.py
-cp vsc.py /bin
-ln -s /bin/vsc.py /bin/vsc
-
