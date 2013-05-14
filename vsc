@@ -1,0 +1,25 @@
+#!/bin/sh
+
+#command map
+vsc_cmds="vm_ server_ repo_ remote_"
+vsc_vm_cmds="template_ clone info ctrl rename req-mac"
+vsc_vm_template_cmds="create deploy list show"
+vsc_vm_server="create rename ctrl" 
+vsc_vm_remote="init"
+
+#import functions
+for f in ./lib/*.sh ; do
+	. "$f"
+done
+
+CMD=""
+CONTEXT="vsc_"
+
+parse_CMD "$@"
+
+[ -z "$CMD" ] && help_exit
+
+echo $CMD
+$CMD
+
+
