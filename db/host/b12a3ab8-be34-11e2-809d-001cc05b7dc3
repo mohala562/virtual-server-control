@@ -1,0 +1,5 @@
+.id = "b12a3ab8-be34-11e2-809d-001cc05b7dc3"
+connect = "ssh"
+port = "5001"
+user = "root"
+name = "office.ginlane.local"

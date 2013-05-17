@@ -1,0 +1,5 @@
+.id = "8ec03956-be24-11e2-a71a-001cc05b7dc3"
+name = "esx"
+type = "hypervisor"
+os = "esxi"
+version = "5"

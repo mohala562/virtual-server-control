@@ -4,59 +4,30 @@ VSC API DOC
 Overview
 --------
 
-VSC is intended to ease deployment of virtual machines and
-
-VSC is a tool to aid in the development of server software using virtualization.  Similar in concept to the Vagrant project, but using server virtualization, instead of desktop.  VSC provides a templating system for ESX5 which allows you to deploy standard VMs that are needed in multiple projects.   
+VSC is a tool to aid in the development of server software using virtualization.  Similar in concept to the Vagrant project, but using server virtualization, instead of desktop.
 
 Key Features
 ============
 
 * Templating Interface using ESXi cmd api
-* Integrate with DNS server so that deployed vms are automatically given a domain name
-* Repos are mapped from shared storage to the virtual servers in virtual machines
-*  
-* Automatically map git repos into vm
+* Integrate with DNS server so that deployed vms are automatically given a domain name and registered on the network
+* Repos are mapped from shared storage to the virtual servers in virtual machines 
+* Automatically clone and map git repos into vm, possible to keep git repos synced.
 * code repos can be edited locally with NFS mapping
-
 * Code repos are stored on a shared nfs export, so they can be mounted into virtual machines and mapped to a webservers virtual server.
 * Recognizes the concept of virtual machines and virtual server.  You can have multiples virtual server on one vm, or only one.
 * DNS is integrated with virtual machines and virtual servers.  When you deploy a vm from a template DNS can be automatically configured on the network.
-* Virtual Servers each get mapped to a dns name also
+* Virtual Servers each get mapped to a dns name also which is a level under the host dns
 
 
-An Example for Spree:
+Initially VSC is integrating with the following:
+ESXi: Hypervisor
+Nginx: Webserver
+Dns-masq: DHCP/DNS server
+NFS: Mapped Network Storage
+git: version control
 
-Create a generic template for a linux server:
-
-Say you create a ESX VM in Vsphere and install CentOS, install VM tools, update, configure a basic setup and call it CentOS6. now create a template from this VM.
-Now shutdown the VM and run:
-
-`vsc template create CentOS`
-
-vsc has remote access configured so commands are run from your local machine. 
-
-this creates a generic template for CentOS that you use to deploy a VM which works with vsc.
-
-to deploy the template do:
-
-`vsc template deploy CentOS WebServer`
-
-this deploys a VM and sets it up to integrate with vsc.
-    
-
-
-
-This creates a template for this CentOS box
-
-
-
-
-
-
-
-For instance say you want to test out a webserver application.  First you would deploy a  
-
-VSC has both the concept of "Virtual Machines" and "Virtual Servers"
+however the command api attempts to be general and not assume any of these specifics, and is designed so that it is possible to extend.
 
 
 Virtual Machine Operations
@@ -254,30 +225,11 @@ server.type = nginx
 fileserver://vsc
 	vsc.conf
 
-
-A Full Example
-==============
-
-
-#### example default global configuration:
-
-hypervisor_host_name = serve_the_net
-hypervisor_type = ESXi
-hypervisor_version = 5
-
-dns_server_host_name = netutil
-dns_server_type = dns-masq
-
-dhcp_server_host_name = netutil
-dhcp_server_type = dns-masq
-dns_domain = ginlane.local
-
 server.type = nginx
 server.nginx.init = rails
 server.start_on_create = true
 
-repo.type = git
-repo.git.clone_on_create = true
+
 
 
 

@@ -1,0 +1,4 @@
+.id = "bbd84cd0-be24-11e2-97e6-001cc05b7dc3"
+name = "netutil"
+type = "dns-masq"
+os = "linux"

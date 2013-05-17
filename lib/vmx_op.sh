@@ -1,13 +1,13 @@
 #!/bin/sh
 # wrappers for vmx_op.py
 
-vmx_op_cmd="./lib/vmx_op.py"
+_vmx_op="./lib/vmx_op.py"
 
 #help_msg="vmx_op [ -i <vmx_file_0> -i <vmx_file_1> ] [ -e 'vmx_op_expr' -e ... ] > output_file"
 
 vmx_op () {
 
-	cmd=$vmx_op_cmd
+	cmd=$_vmx_op
 
 	{ 	if [ -z "$1" ]; then
 			cat
@@ -55,29 +55,3 @@ vmx_op () {
 
 }
 
-
-
-#the current vmx file
-touch '_'
-cvmx='_'
-
-vmx_set_current_file() {
-
-	cvmx="$*"
-
-}
-
-vmx_get() {
-
-	vmx_op -i "$cvmx" "$@" 
-}
-
-vmx_change() {
-
-	vmx_op -i "$cvmx" "$@" > "$cvmx"
-}
-
-alias v=vmx_op
-alias c=vmx_set_current_file
-alias g=vmx_get
-alias s=vmx_change
